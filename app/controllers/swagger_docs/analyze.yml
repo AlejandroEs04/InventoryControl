@@ -1,0 +1,37 @@
+tags:
+  - Data Analysis
+parameters:
+  - name: body
+    in: body
+    required: True
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          date:
+            type: string
+            format: date-time
+          products:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                quantity:
+                  type: integer
+responses:
+  200:
+    description: Análisis de datos
+    schema:
+      type: object
+      properties:
+        summary:
+          type: array
+          items:
+            type: object
+        plot:
+          type: string
