@@ -6,5 +6,17 @@ analysis_bp = Blueprint('analysis', __name__)
 @analysis_bp.route('/', methods=['POST'])
 def analyze():
     data = request.get_json()
-    result = analyze_data(data)
+    
+    processed_data = []
+    
+    for sale in data: 
+        for product in sale['products']:
+            processed_data.append({
+                'sale_id' : sale['id'], 
+                'date' : sale['date'], 
+                'product_id' : product['id'],
+                'quantity' : product['quantity']
+            })
+    
+    result = analyze_data(processed_data)
     return jsonify(result)

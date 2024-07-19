@@ -6,11 +6,11 @@ import base64
 
 def analyze_data(data):
     df = pd.DataFrame(data)
-    summary = df.describe().to_dict()
+    summary = df.groupby('product_id')['quantity'].sum().reset_index().to_dict(orient='records')
     
     plt.figure()
-    sns.barplot(x='product', y='value', data=df)
-    plt.title('Ventas por producto')
+    sns.barplot(x='product_id', y='quantity', data=df.groupby('product_id')['quantity'].sum().reset_index())
+    plt.title('Cantidad de productos vendidos')
     
     img = io.BytesIO()
     plt.savefig(img, format='png')
