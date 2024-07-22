@@ -7,6 +7,6 @@ def create_app():
     Swagger(app)
     
     # Here will be every routes
-    app.register_blueprint(analysis_bp, url_prefix='/analysis')
+    app.register_blueprint(analysis_bp, url_prefix='/api/analysis')
     
     return app
