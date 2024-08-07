@@ -12,7 +12,7 @@ def analyze_total_products(data):
     plt.figure()
     sns.barplot(x='item_id', y='quantity', data=df.groupby('item_id')['quantity'].sum().reset_index())
     plt.title('Cantidad de productos vendidos')
-    
+
     img = io.BytesIO()
     plt.savefig(img, format='png')
     img.seek(0)
